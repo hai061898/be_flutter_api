@@ -10,45 +10,45 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class User
+ * Class Service
  * 
  * @property int $id
- * @property string $fullname
- * @property string $username
- * @property string $password
- * @property boolean $image
- * @property int $activated
+ * @property string|null $name
+ * @property string|null $description
+ * @property float|null $cost
+ * @property int $company_id
  * 
+ * @property Company $company
  * @property Collection|Employee[] $employees
  * @property Collection|Schedule[] $schedules
  *
  * @package App\Models
  */
-class User extends Model
+class Service extends Model
 {
-	protected $table = 'users';
+	protected $table = 'services';
 	public $timestamps = false;
 
 	protected $casts = [
-		'image' => 'boolean',
-		'activated' => 'int'
-	];
-
-	protected $hidden = [
-		'password'
+		'cost' => 'float',
+		'company_id' => 'int'
 	];
 
 	protected $fillable = [
-		'fullname',
-		'username',
-		'password',
-		'image',
-		'activated'
+		'name',
+		'description',
+		'cost',
+		'company_id'
 	];
+
+	public function company()
+	{
+		return $this->belongsTo(Company::class);
+	}
 
 	public function employees()
 	{
-		return $this->hasMany(Employee::class);
+		return $this->belongsToMany(Employee::class, 'employees_services');
 	}
 
 	public function schedules()
