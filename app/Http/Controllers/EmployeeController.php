@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth:api');
     }
+
 
     /**
      * Display a listing of the resource.
@@ -24,16 +27,6 @@ class EmployeeController extends Controller
             return response()->json($employees);
 
         return response()->json(['error' => 'Response not found.'], 401);   
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -55,7 +48,7 @@ class EmployeeController extends Controller
             return response()->json($employee);
 
         return response()->json(['error' => 'Resource not save.'], 401);
-    }
+    }   
 
     /**
      * Display the specified resource.
@@ -71,17 +64,6 @@ class EmployeeController extends Controller
             return response()->json($employee);
 
         return response()->json(['error' => 'Response not found.'], 401);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**

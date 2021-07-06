@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $employee_id
  * @property int $service_id
  * 
- * @property Employee|null $employee
+ * @property Employee $employee
  * @property Service $service
  * @property User $user
  *

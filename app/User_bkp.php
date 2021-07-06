@@ -32,7 +32,6 @@ class User extends Authenticatable implements JWTSubject
 	public $timestamps = false;
 
 	protected $casts = [
-		'image' => 'boolean',
 		'activated' => 'bool'
 	];
 
@@ -41,22 +40,10 @@ class User extends Authenticatable implements JWTSubject
 	];
 
 	protected $fillable = [
-		'fullname',
 		'username',
 		'password',
-		'image',
 		'activated'
 	];
-
-	public function employees()
-	{
-		return $this->hasMany(Employee::class);
-	}
-
-	public function schedules()
-	{
-		return $this->hasMany(Schedule::class);
-	}
 
 
 
